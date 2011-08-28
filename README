@@ -1,0 +1,72 @@
+wassr.jpでbotを作成するための仕組み
+
+* 同一ディレクトリ内に以下のファイルを揃える
+
+** config.yaml
+////////////////////////////////
+---
+user_name: your_id
+passwd: your_passwd
+agent: your_agent_name(option)
+////////////////////////////////
+
+** WassrApi.pm
+
+** main.pl
+
+貴方がAPIを使用するロジックを組み立てる場所です。
+
+* 使用方法
+
+** user_timeline
+
+    use strict;
+    use warnings;
+    use WassrApi;
+    use Encode;
+    use Data::Dumper;
+
+    my $target_user_id = '';
+
+    for my $user_timeline ( user_timeline($target_user_id) ) {
+        die Dumper $user_timeline;
+    }
+
+** friend_timeline
+    
+    use strict;
+    use warnings;
+    use WassrApi;
+    use Encode;
+    use Data::Dumper;
+
+    my $target_user_id = '';
+
+    for my $friend_timeline ( friend_timeline($target_friend_id) ) {
+        die Dumper $friend_timeline;
+    }
+
+** replies  
+    
+    use strict;
+    use warnings;
+    use WassrApi;
+    use Encode;
+    use Data::Dumper;
+
+    for my $row ( replies() ) {
+        warn Dumper $row;
+    }
+
+** followers 
+
+    use strict;
+    use warnings;
+    use WassrApi;
+    use Encode;
+    use Data::Dumper;
+
+    for my $row ( followers() ) {
+        warn Dumper $row;
+    }
+
