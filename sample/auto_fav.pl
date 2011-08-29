@@ -2,7 +2,6 @@ use strict;
 use warnings;
 use utf8;
 use WassrApi;
-use Data::Dumper;
 use Encode;
 
 my $LOG_FILE_PATH = "$FindBin::Bin/replies.log";
