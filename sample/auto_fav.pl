@@ -12,14 +12,19 @@ sub is_logfile {
     my $target_id = shift;        
 
     open my $fh , '<:utf8', $LOG_FILE_PATH or die $! . $LOG_FILE_PATH;
+
+    my $id_fg = 0;
     while( my $id = <$fh> ) {
         chomp $id;
         if( $target_id == $id ) {
-            return 1;    
+            $id_fg = 1;
+            last;
         } 
     }
 
-    return 0;
+    close $fh;
+
+    return $id_fg;
 }
 
 sub add {
