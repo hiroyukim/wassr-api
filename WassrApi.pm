@@ -13,6 +13,7 @@ our @EXPORT = qw(
     friends_timeline
     replies
     followers
+    fav
 );
 
 my $CONFIG ||= do {
@@ -49,10 +50,15 @@ sub __ua {
 }
 
 sub _post {
-    my $url = shift;
-    my $ua  = __ua;
+    my $path  = shift;
+    my $query = shift||{};
+    my $ua   = __ua;
 
-    my $res = $ua->post($url); 
+    my $uri = URI->new("http://@{[$CONFIG->{api_host}]}");
+    $uri->path($path);
+    $uri->query_form($query); 
+
+    my $res = $ua->post($uri->as_string); 
     
     $res->is_success ? $res->decoded_content : undef;
 }
@@ -67,7 +73,7 @@ sub _get {
     $uri->query_form($query); 
 
     my $res = $ua->get($uri->as_string); 
-warn $res->decoded_content;
+
     my $content = decode_json( $res->is_success ? $res->decoded_content : undef );
 
     if( ref $content eq 'ARRAY' ) {
@@ -104,4 +110,24 @@ sub followers {
     return _get('/statuses/followers.json');
 }
 
+sub fav { 
+    my $rid  = shift or Carp::croak('need ! rid');
+    return _post(sprintf("/favorites/create/%s.json",$rid));
+}
+
 1;
+__END__
+
+=head1 NAME
+
+WassrApi - DSL
+
+
+=head1 AUTHOR
+
+Hiroyuki Yamanaka
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify it under the same terms as Perl itself.
+
