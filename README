@@ -2,24 +2,21 @@ wassr.jpでbotを作成するための仕組み
 
 * 使用の際の注意
 
-このScriptは自己責任で使用してください。
-こちらを使用することによって生じるいかなることにも責任を負いません。
-
-サービスを運営しているのはあくまで会社なのでサービスに支障をAPIを使用する回数を減らせるように工夫しましょう。
+    サービスを運営しているのはあくまで会社なのでサービスに支障をAPIを使用する回数を減らせるように工夫しましょう。
 
 * 同一ディレクトリ内に以下のファイルを揃える
 
-** config.yaml
-////////////////////////////////
----
-user_name: your_id
-passwd: your_passwd
-agent: your_agent_name(option)
-////////////////////////////////
+    ** config.yaml
+    ////////////////////////////////
+    ---
+    user_name: your_id
+    passwd: your_passwd
+    agent: your_agent_name(option)
+    ////////////////////////////////
 
-** WassrApi.pm
+    ** WassrApi.pm
 
-** main.pl
+    ** main.pl
 
 貴方がAPIを使用するロジックを組み立てる場所です。
 
@@ -76,4 +73,12 @@ agent: your_agent_name(option)
     for my $row ( followers() ) {
         warn Dumper $row;
     }
+
+
+ライセンス
+----------
+
+Copyright (C) 2011 HIROYUKI Yamanaka <hiroyukimm@gmail.com>
+
+Released under the [MIT license](http://creativecommons.org/licenses/MIT/).
 
