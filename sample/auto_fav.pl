@@ -3,6 +3,7 @@ use warnings;
 use utf8;
 use WassrApi;
 use Encode;
+use FindBin;
 
 my $LOG_FILE_PATH = "$FindBin::Bin/replies.log";
 my $YOUR_ID       = '';
