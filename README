@@ -74,6 +74,21 @@ wassr.jpでbotを作成するための仕組み
         warn Dumper $row;
     }
 
+** status
+
+    use strict;
+    use warnings;
+    use utf8;
+    use WassrApi;
+    use Encode;
+
+    sub main {
+
+        status('こんにちわ');    
+    }
+
+    &main();
+
 
 ライセンス
 ----------

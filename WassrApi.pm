@@ -14,6 +14,7 @@ our @EXPORT = qw(
     replies
     followers
     fav
+    status
 );
 
 my $CONFIG ||= do {
@@ -114,6 +115,21 @@ sub fav {
     my $rid  = shift or Carp::croak('need ! rid');
     return _post(sprintf("/favorites/create/%s.json",$rid));
 }
+
+sub status { 
+    my $status  = shift or Carp::croak('need ! status');
+    my $rid     = shift; 
+
+    my $args = {
+        status => $status,
+    };
+
+    if( $rid ) {
+        $args->{reply_status_rid} = $rid;
+    }
+ 
+    return _post('/statuses/update.json',$args);
+} 
 
 1;
 __END__
